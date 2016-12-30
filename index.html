@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Jquery Bootstrap Vue.js example</title>
+    <!--参考：https://github.com/sudo-cm/requirejs-bootstrap-demo -->
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    .selected {
+        background-color: #eee;
+    }
+    
+    table tr,
+    table th {
+        text-align: center;
+    }
+    
+    table>tbody>tr input {
+        text-align: center;
+        border: none;
+        background-color: rgba(255, 255, 255, 0);
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <h2>点击选中方法1(多选)</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>编号</th>
+                    <th>姓名</th>
+                    <th>部门</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in tableData" v-on:mousedown="isSelected($event,item)">
+                    <td>{{index}}</td>
+                    <td>{{item.no}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.info}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="app2" class="container">
+        <h2>点击选中方法2(单选)</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>编号</th>
+                    <th>姓名</th>
+                    <th>部门</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in tableData" v-on:mousedown="isSelected(index)">
+                    <td>{{index}}</td>
+                    <td>{{item.no}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.info}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="example-1" class="container">
+    	<button v-on:click="count += 1">Add 1</button>
+    	<p>The button above has been clicked {{count}} times</p>
+    </div>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+    <script type="text/javascript" src="./assets/js/require.min.js" data-main="./assets/js/app.js"></script>
+</body>
+
+</html>
