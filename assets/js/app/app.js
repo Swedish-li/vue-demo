@@ -1,34 +1,15 @@
-define(function(require) {
-    var $ = require('jquery')
-    var Vue = require('vue')
+define(function (require) {
+    var Vue = require('Vue')
     var data = require('data')
 
-    //父组件使用属性想子组件传递数据(props down)，子组件通过事件向父组件传递数据(event up)
-    //组件之间的数据传递
-    Vue.component('child', {
-        props: ['message'],
-        template: '<h3>{{message}}</h3>'
-    })
+    require('./router')
 
-    new Vue({
-        el: '#example-6',
-        data: {
-            msg: "this is parent component!"
-        }
-    })
+    // 注册全局组件
+    require('./component/child')
+    require('./component/simple-counter')
 
     new Vue({
         el: '#example-5'
-    })
-
-    //simple counter
-    Vue.component('simple-counter', {
-        template: '<button @click="counter+=1">{{counter}}</button>',
-        data: function() {
-            return {
-                counter: 0
-            }
-        }
     })
 
     new Vue({
@@ -41,20 +22,10 @@ define(function(require) {
     }
 
     new Vue({
-            el: '#example-3',
-            components: {
-                'new-component': child
-            }
-        })
-        //Vue.component(tagName, options)
-        //全局注册组件
-    Vue.component('my-component', {
-        template: '<h1>Hello Vue component!</h1>'
-    })
-
-    //创建Vue实例
-    new Vue({
-        el: '#example-2'
+        el: '#example-3',
+        components: {
+            'new-component': child
+        }
     })
 
     var app = new Vue({
@@ -63,13 +34,22 @@ define(function(require) {
             tableData: data.tableData
         },
         methods: {
-            isSelected: function(event) {
-                var $el = $(event.currentTarget);
-                if ($el.hasClass("selected")) {
-                    $el.removeClass("selected");
+            isSelected: function (event, item) {
+                // https://cn.vuejs.org/v2/guide/reactivity.html
+                //Vue 不允许在已经创建的实例上动态添加新的根级响应式属性 (root-level reactive property)
+                if (item.selected) {
+                    this.$set(item, 'selected', false)
                 } else {
-                    $el.addClass("selected");
+                    this.$set(item, 'selected', true)
                 }
+
+            },
+            hasSelected: function (index) {
+                let selected = this.tableData[index].selected
+                if (selected === undefined) {
+                    return false
+                }
+                return selected ? false : true;
             }
         }
     })
@@ -81,11 +61,11 @@ define(function(require) {
             classItem: {}
         },
         methods: {
-            isSelected: function(index) {
-                console.log(index)
-                this.$set(this.classItem, index)
-                    //$($el).find("table>tbody>tr").removeClass("selected")
-                    //$($el).find("table>tbody>tr:eq("+index+")").addClass("selected")
+            isSelected: function (index) {
+                return this.tableData.indexOf(this.classItem) === index
+            },
+            select: function (index) {
+                this.classItem = this.tableData[index]
             }
         }
     })

@@ -7,31 +7,38 @@
     <!--参考：https://github.com/sudo-cm/requirejs-bootstrap-demo -->
     <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
     <style>
-    .selected {
-        background-color: #eee;
-    }
-    
-    table tr,
-    table th {
-        text-align: center;
-    }
-    
-    table>tbody>tr input {
-        text-align: center;
-        border: none;
-        background-color: rgba(255, 255, 255, 0);
-    }
+        .selected {
+            background-color: #eee;
+        }
+
+        table tr,
+        table th {
+            text-align: center;
+        }
+
+        table>tbody>tr input {
+            text-align: center;
+            border: none;
+            background-color: rgba(255, 255, 255, 0);
+        }
     </style>
 </head>
 
 <body>
-    
-    <div id="example-6">
-        <input type="text" v-model="msg">
-        <br>
-        <child v-bind:message="msg"></child>
+    <div id="routeApp">
+        <p>
+            <router-link to="/foo">Go example 6</router-link>
+            <router-link to="/bar">Go to Bar</router-link>
+        </p>
+
+        <router-view></router-view>
     </div>
-    
+
+
+
+    <hr>
+
+
     <hr>
     <div id="example-5">
         <child message="Hello Vue.js Component!"></child>
@@ -49,7 +56,7 @@
     <div id="example-3">
         <new-component></new-component>
     </div>
-    
+
 
     <div id="app" class="container">
         <h2>点击选中方法1(多选)</h2>
@@ -63,7 +70,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(item,index) in tableData" v-on:mousedown="isSelected($event,item)" v-bind:class="{className:item['selected']}" >
+                <tr v-for="(item,index) in tableData" v-on:mousedown="isSelected($event,item)" v-bind:class="{selected:hasSelected(index)}">
                     <td>{{index}}</td>
                     <td>{{item.no}}</td>
                     <td>{{item.name}}</td>
@@ -84,7 +91,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(item,index) in tableData" v-on:mousedown="isSelected(index)" v-bind:class='{selected:classItem[index]}'>
+                <tr v-for="(item,index) in tableData" v-on:mousedown="select(index)" v-bind:class='{selected:isSelected(index)}'>
                     <td>{{index}}</td>
                     <td>{{item.no}}</td>
                     <td>{{item.name}}</td>
@@ -95,15 +102,10 @@
     </div>
 
     <div id="example-1" class="container">
-    	<button v-on:click="count += 1">Add 1</button>
-    	<p>The button above has been clicked {{count}} times</p>
+        <button v-on:click="count += 1">Add 1</button>
+        <p>The button above has been clicked {{count}} times</p>
     </div>
-    <hr>
-
-    <!-- Vue组件使用示例 -->
-    <div id="example-2">
-        <my-component></my-component>
-    </div>
+   
 
 
 
