@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(item,index) in tableData" v-on:mousedown="isSelected($event,item)" v-bind:class="{selected:hasSelected(index)}">
+            <tr v-for="(item,index) in tableData" @mousedown="isSelected($event,item)" :class="{selected:hasSelected(index)}">
                 <td>{{index}}</td>
                 <td>{{item.no}}</td>
                 <td>{{item.name}}</td>
