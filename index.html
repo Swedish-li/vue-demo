@@ -26,88 +26,26 @@
 
 <body>
     <div id="routeApp">
-        <p>
-            <router-link to="/foo">Go example 6</router-link>
-            <router-link to="/bar">Go to Bar</router-link>
-        </p>
+        <ul>
+            <li>
+                <router-link to="/counter">simple counter</router-link>
+            </li>
+            <li>
+                <router-link to="/local-component">Local Registration</router-link>
+            </li>
+            <li>
+                <router-link to="/passing-data">passing data by props</router-link>
+            </li>
+            <li>
+                <router-link to="/multi-table">Mulit select Table</router-link>
+            </li>
+            <li>
+                <router-link to="/single-table">Single select Table</router-link>
+            </li>
+        </ul>
 
         <router-view></router-view>
     </div>
-
-
-
-    <hr>
-
-
-    <hr>
-    <div id="example-5">
-        <child message="Hello Vue.js Component!"></child>
-    </div>
-
-    <!-- Vue组件初始化参数中的data必须是函数 -->
-    <div id="example-4">
-        <simple-counter></simple-counter>
-        <simple-counter></simple-counter>
-        <simple-counter></simple-counter>
-    </div>
-
-    <!-- 组件局部注册 -->
-
-    <div id="example-3">
-        <new-component></new-component>
-    </div>
-
-
-    <div id="app" class="container">
-        <h2>点击选中方法1(多选)</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>序号</th>
-                    <th>编号</th>
-                    <th>姓名</th>
-                    <th>部门</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(item,index) in tableData" v-on:mousedown="isSelected($event,item)" v-bind:class="{selected:hasSelected(index)}">
-                    <td>{{index}}</td>
-                    <td>{{item.no}}</td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.info}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div id="app2" class="container">
-        <h2>点击选中方法2(单选)</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>序号</th>
-                    <th>编号</th>
-                    <th>姓名</th>
-                    <th>部门</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(item,index) in tableData" v-on:mousedown="select(index)" v-bind:class='{selected:isSelected(index)}'>
-                    <td>{{index}}</td>
-                    <td>{{item.no}}</td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.info}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div id="example-1" class="container">
-        <button v-on:click="count += 1">Add 1</button>
-        <p>The button above has been clicked {{count}} times</p>
-    </div>
-   
-
-
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>

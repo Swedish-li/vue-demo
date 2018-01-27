@@ -1,0 +1,17 @@
+{
+  "name": "vue-demo",
+  "version": "1.0.0",
+  "description": "vue requirejs demo",
+  "main": "index.js",
+  "repository": "git@github.com:Swedish-li/vue-demo.git",
+  "author": "Swedish-li <one.piece.li.2016@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "serve"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "serve": "^6.4.9"
+  }
+}

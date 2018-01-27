@@ -1,26 +1,39 @@
 define([
     'require',
     'Vue',
-    'vue-router'
-], function (require, Vue) {
+    'vue-router',
+    './component/pass-data',
+    './component/local-component',
+    './component/multi-table',
+    './component/single-table',
+    './component/counter'
+], function (require, Vue, VueRouter) {
     'use strict';
-    const VueRouter = require('vue-router')
-    Vue.use(VueRouter)
 
-    const Foo = { template: '<div>foo</div>' }
-    const Bar = { template: '<div>bar</div>' }
+    const counter = require('./component/counter')
+    const passingData = require('./component/pass-data')
 
+    //局部注册组件,这种方式也可以注册其他vue功能，如指令
+    const localComponent = require('./component/local-component')
+
+    const multiTable = require('./component/multi-table')
+
+    const singleTable = require('./component/single-table')
 
     const routes = [
-        { path: '/foo', component: Foo },
-        { path: '/bar', component: Bar }
+        { path: '/', redirect: 'table' },
+        { path: '/counter', component: counter },
+        { path: '/passing-data', component: passingData },
+        { path: '/local-component', component: localComponent },
+        { path: '/multi-table', component: multiTable },
+        { path: '/single-table', component: singleTable }
     ]
 
-    const router = new VueRouter({
-        routes
-    })
+    Vue.use(VueRouter)
 
     const app = new Vue({
-        router
+        router: new VueRouter({
+            routes
+        })
     }).$mount('#routeApp')
 });
