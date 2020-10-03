@@ -1,57 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Jquery Bootstrap Vue.js example</title>
-    <!--参考：https://github.com/sudo-cm/requirejs-bootstrap-demo -->
-    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .selected {
-            background-color: rgb(110, 185, 67);
-        }
-
-        table tr,
-        table th {
-            text-align: center;
-        }
-
-        table>tbody>tr input {
-            text-align: center;
-            border: none;
-            background-color: rgba(255, 255, 255, 0);
-        }
-    </style>
-</head>
-
-<body>
-    <div id="routeApp">
-        <ul>
-            <li>
-                <router-link to="/counter">simple counter</router-link>
-            </li>
-            <li>
-                <router-link to="/local-component">Local Registration</router-link>
-            </li>
-            <li>
-                <router-link to="/passing-data">passing data by props</router-link>
-            </li>
-            <li>
-                <router-link to="/multi-table">Mulit select Table</router-link>
-            </li>
-            <li>
-                <router-link to="/single-table">Single select Table</router-link>
-            </li>
-        </ul>
-        <hr>
-        <router-view></router-view>
-    </div>
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-    <script type="text/javascript" src="./assets/js/require.min.js" data-main="./assets/js/main.js"></script>
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Phone Gallery</title>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
