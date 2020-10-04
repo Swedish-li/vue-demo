@@ -13,7 +13,16 @@ const ImageView = defineComponent({
   render() {
     const { $attrs } = this
     return (
-      <img {...$attrs} src={this.src} class={{ selected: this.selected }} />
+      <img
+        {...$attrs}
+        src={this.src}
+        class={{ selected: this.selected }}
+        onClick={(e) => {
+          if (this.onClick) {
+            this.onClick(e)
+          }
+        }}
+      />
     )
   },
 })
@@ -45,7 +54,7 @@ export const PhoneDetailComponent = defineComponent({
   },
   render() {
     const phone = this.detail
-    const mainImageUrl = phone.images[0]
+    const mainImageUrl = this.mainImageUrl
 
     return (
       <>

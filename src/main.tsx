@@ -1,19 +1,17 @@
 import { createApp } from 'vue'
 import App from './App'
-import './style/index.scss'
-import {
-  createRouter,
-  createWebHistory,
-  createWebHashHistory,
-} from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import { PhoneDetailContainer } from './components/PhoneDetailContainer'
 import { PhoneListComponent } from './components/PhoneList'
+
+import './style/index.scss'
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', component: PhoneListComponent },
-    { path: '/detail/:id', component: PhoneDetailContainer },
+    { path: '/phones', component: PhoneListComponent, name: 'phone-list' },
+    { path: '/phones/:id', component: PhoneDetailContainer, props: true },
+    { path: '/', redirect: { name: 'phone-list' } },
   ],
 })
 

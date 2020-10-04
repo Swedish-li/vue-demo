@@ -1,0 +1,61 @@
+name: Deploy gh pages
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [master]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build-deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+            ${{ runner.os }}-
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+
+      - name: build for Github Pages
+        run: yarn build
+
+      # Runs a single command using the runners shell
+      - name: GitHub Pages deploy
+        uses: crazy-max/ghaction-github-pages@v2.1.2
+        with:
+          target_branch: gh-pages
+          # Create incremental commit instead of doing push force
+          keep_history: false
+          # Allow an empty commit to be created
+          allow_empty_commit: false
+          # Build directory to deploy
+          build_dir: dist
+          # The committer name and email address
+          committer: gh-bot<hha649330@gmail.com>
+          # The author name and email address
+          author: Swedish-li<one.piece.li.2016@gmail.com>
+          # Commit message
+          commit_message: deploy [ci skip]
+          # Write the given domain name to the CNAME file
+          # Allow Jekyll to build your site
+          jekyll: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

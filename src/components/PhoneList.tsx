@@ -75,10 +75,10 @@ export const PhoneListComponent = defineComponent({
                 })
                 .map((p) => (
                   <li class="thumbnail phone-list-item">
-                    <RouterLink to={`/detail/${p.id}`} class="thumb">
+                    <RouterLink to={`/phones/${p.id}`} class="thumb">
                       <img src={p.imageUrl} alt={p.name} />
                     </RouterLink>
-                    <RouterLink to={`/detail/${p.id}`}>{p.name}</RouterLink>
+                    <RouterLink to={`/phones/${p.id}`}>{p.name}</RouterLink>
                     <p>{p.snippet}</p>
                   </li>
                 ))}

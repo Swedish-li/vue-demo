@@ -1,6 +1,62 @@
-// Animate list change
+/* Animate `ngRepeat` in `phoneList` component */
 
-// Animate router view transitions
+.phone-list-item {
+  &.list-fade-enter,
+  &.list-fade-leave,
+  &.list-fade-move {
+    overflow: hidden;
+    transition: 0.5s linear all;
+  }
+
+  &.list-fade-enter,
+  &.list-fade-leave.list-fade-active,
+  &.list-fade-move {
+    height: 0;
+    margin-bottom: 0;
+    opacity: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+
+  &.list-fade-enter.list-fade-active,
+  &.list-fade-item.list-fade-leave,
+  &.list-fade-move.list-fade-move-active {
+    height: 120px;
+    margin-bottom: 20px;
+    opacity: 1;
+    padding-bottom: 4px;
+    padding-top: 15px;
+  }
+}
+
+/* Animate view transitions with `ngView` */
+.view-container {
+  position: relative;
+}
+
+.view-frame {
+  margin-top: 20px;
+}
+
+.view-fade-enter-active,
+.view-fade-leave.active {
+  background: white;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.view-fade-enter-active {
+  animation: 1s fade-in;
+  z-index: 100;
+}
+
+.view-fade-leave-active {
+  animation: 1s fade-out;
+  z-index: 99;
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -18,3 +74,14 @@
     opacity: 0;
   }
 }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.75s ease;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
+/* Older browsers might need vendor-prefixes for keyframes and animation! */
