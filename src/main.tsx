@@ -5,9 +5,10 @@ import { PhoneDetailContainer } from './components/PhoneDetailContainer'
 import { PhoneListComponent } from './components/PhoneList'
 
 import './style/index.scss'
+import { getUrl } from './utils'
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(getUrl()),
   routes: [
     { path: '/phones', component: PhoneListComponent, name: 'phone-list' },
     { path: '/phones/:id', component: PhoneDetailContainer, props: true },

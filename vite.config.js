@@ -1,3 +1,3 @@
 module.exports = {
-  base: '/vue-demo/',
+  base: 'https://swedish-li.github.io/vue-demo/',
 }
