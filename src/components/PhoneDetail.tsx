@@ -1,3 +1,4 @@
+import { getUrl } from '../utils'
 import { defineComponent, PropType } from 'vue'
 import { checkmark, PhoneDetail } from '../core'
 
@@ -60,14 +61,14 @@ export const PhoneDetailComponent = defineComponent({
       <>
         <div class="phone-images">
           {phone.images.map((img) => (
-            <ImageView src={`/${img}`} selected={img === mainImageUrl} />
+            <ImageView src={getUrl(img)} selected={img === mainImageUrl} />
           ))}
         </div>
         <h1>{phone.name}</h1>
         <p>{phone.description}</p>
         <ul class="phone-thumbs">
           {phone.images.map((img) => (
-            <ImageView src={`/${img}`} onClick={() => this.setImage(img)} />
+            <ImageView src={getUrl(img)} onClick={() => this.setImage(img)} />
           ))}
         </ul>
 

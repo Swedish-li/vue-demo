@@ -1,3 +1,4 @@
+import { getUrl } from '../utils'
 import { defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
 import { getPhoneList, Phone } from '../core'
@@ -76,7 +77,7 @@ export const PhoneListComponent = defineComponent({
                 .map((p) => (
                   <li class="thumbnail phone-list-item">
                     <RouterLink to={`/phones/${p.id}`} class="thumb">
-                      <img src={p.imageUrl} alt={p.name} />
+                      <img src={getUrl(p.imageUrl)} alt={p.name} />
                     </RouterLink>
                     <RouterLink to={`/phones/${p.id}`}>{p.name}</RouterLink>
                     <p>{p.snippet}</p>

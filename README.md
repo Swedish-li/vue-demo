@@ -10,3 +10,8 @@
 - [ ] unit test
 - [ ] e2e test
 - [x] gh page deploy (workflow)
+
+## Links
+
+- [Vite](https://github.com/vitejs/vite)
+- [Vue 3.0](https://v3.vuejs.org/)
