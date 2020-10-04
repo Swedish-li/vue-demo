@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App'
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import { PhoneDetailContainer } from './components/PhoneDetailContainer'
 import { PhoneListComponent } from './components/PhoneList'
 
@@ -8,7 +8,7 @@ import './style/index.scss'
 import { getUrl } from './utils'
 
 const router = createRouter({
-  history: createWebHistory(getUrl()),
+  history: createWebHashHistory(getUrl()),
   routes: [
     { path: '/phones', component: PhoneListComponent, name: 'phone-list' },
     { path: '/phones/:id', component: PhoneDetailContainer, props: true },

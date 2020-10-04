@@ -1,11 +1,13 @@
 // https://www.typescriptlang.org/docs/handbook/advanced-types.html#conditional-types
 
+import { getUrl } from '../../utils'
+
 export function getPhone(id: string) {
-  return fetchJson<PhoneDetail>(`/phones/${id}.json`)
+  return fetchJson<PhoneDetail>(getUrl(`phones/${id}.json`))
 }
 
 export function getPhoneList() {
-  return fetchJson<Phone[]>('/phones/phones.json')
+  return fetchJson<Phone[]>(getUrl('phones/phones.json'))
 }
 
 async function fetchJson<T>(url: string) {
