@@ -12,12 +12,11 @@ h1 {
 /* View: Phone list */
 .phones {
   list-style: none;
-}
-
-.phones li {
-  clear: both;
-  height: 115px;
-  padding-top: 15px;
+  li {
+    clear: both;
+    height: 115px;
+    padding-top: 15px;
+  }
 }
 
 .thumb {
@@ -38,10 +37,10 @@ h1 {
   margin-right: 3em;
   padding: 2em;
   width: 400px;
-}
 
-.phone:first-child {
-  display: block;
+  &:first-child {
+    display: block;
+  }
 }
 
 .phone-images {
@@ -56,20 +55,19 @@ h1 {
 .phone-thumbs {
   list-style: none;
   margin: 0;
-}
+  img {
+    height: 100px;
+    padding: 1em;
+    width: 100px;
+  }
 
-.phone-thumbs img {
-  height: 100px;
-  padding: 1em;
-  width: 100px;
-}
-
-.phone-thumbs li {
-  background-color: white;
-  border: 1px solid black;
-  cursor: pointer;
-  display: inline-block;
-  margin: 1em;
+  li {
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+    display: inline-block;
+    margin: 1em;
+  }
 }
 
 .specs {
@@ -77,19 +75,17 @@ h1 {
   list-style: none;
   margin: 0;
   padding: 0;
-}
+  dt {
+    font-weight: bold;
+  }
+  & > li {
+    display: inline-block;
+    vertical-align: top;
+    width: 200px;
 
-.specs dt {
-  font-weight: bold;
-}
-
-.specs > li {
-  display: inline-block;
-  vertical-align: top;
-  width: 200px;
-}
-
-.specs > li > span {
-  font-size: 1.2em;
-  font-weight: bold;
+    & > span {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+  }
 }
