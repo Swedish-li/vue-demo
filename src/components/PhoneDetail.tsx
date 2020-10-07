@@ -29,7 +29,6 @@ const ImageView = defineComponent({
           top: ['0', '-500px'],
         })
       }
-      console.log(this.$refs.el)
     },
   },
   render() {
@@ -39,7 +38,6 @@ const ImageView = defineComponent({
         ref="el"
         {...$attrs}
         src={this.src}
-        class={{ selected: this.selected }}
         onClick={(e) => {
           if (this.onClick) {
             this.onClick(e)
@@ -90,7 +88,9 @@ export const PhoneDetailComponent = defineComponent({
         <p>{phone.description}</p>
         <ul class="phone-thumbs">
           {phone.images.map((img) => (
-            <ImageView src={getUrl(img)} onClick={() => this.setImage(img)} />
+            <li>
+              <ImageView src={getUrl(img)} onClick={() => this.setImage(img)} />
+            </li>
           ))}
         </ul>
 
