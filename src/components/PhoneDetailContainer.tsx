@@ -22,10 +22,14 @@ export const PhoneDetailContainer = defineComponent({
     getPhone(this.id).then((res) => (this.detail = res))
   },
   render() {
-    return this.detail ? (
-      <PhoneDetailComponent detail={this.detail}></PhoneDetailComponent>
-    ) : (
-      <h1>Loading....</h1>
+    return (
+      <div class="detail-container">
+        {this.detail ? (
+          <PhoneDetailComponent detail={this.detail}></PhoneDetailComponent>
+        ) : (
+          <h1 class="loading">Loading....</h1>
+        )}
+      </div>
     )
   },
 })

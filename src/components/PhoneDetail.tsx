@@ -1,6 +1,7 @@
 import { getUrl } from '../utils'
 import { defineComponent, PropType } from 'vue'
 import { checkmark, PhoneDetail } from '../core'
+import anime from 'animejs'
 
 const ImageView = defineComponent({
   props: {
@@ -11,10 +12,31 @@ const ImageView = defineComponent({
     selected: Boolean,
     onClick: Function as PropType<(event: MouseEvent) => void>,
   },
+  watch: {
+    selected(newValue: boolean, oldValue: boolean) {
+      if (!this.$refs.el || newValue === oldValue) return
+
+      const el = this.$refs.el as HTMLPictureElement
+
+      if (newValue) {
+        anime({
+          targets: el,
+          top: ['500px', '0'],
+        })
+      } else {
+        anime({
+          targets: el,
+          top: ['0', '-500px'],
+        })
+      }
+      console.log(this.$refs.el)
+    },
+  },
   render() {
     const { $attrs } = this
     return (
       <img
+        ref="el"
         {...$attrs}
         src={this.src}
         class={{ selected: this.selected }}

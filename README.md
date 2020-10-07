@@ -4,7 +4,7 @@
 
 ## TODO
 
-- [ ] animation
+- [x] animation
 - [ ] more components
 - [ ] performace optimization
 - [ ] unit test

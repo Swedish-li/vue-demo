@@ -56,17 +56,7 @@ export const PhoneListComponent = defineComponent({
             {/* <!--Body content--> */}
 
             <ul class="phones">
-              <TransitionGroup
-                name="list"
-                onEnter={(e) => console.log(e.classList.toString(), 'onEnter')}
-                onLeave={(e) => console.log(e.classList.toString(), 'onLeave')}
-                onBeforeEnter={(e) =>
-                  console.log(e.classList.toString(), 'onBeforeEnter')
-                }
-                onAfterEnter={(e) =>
-                  console.log(e.classList.toString(), 'onAfterEnter')
-                }
-              >
+              <TransitionGroup name="list">
                 {this.phones
                   .filter((p) => {
                     return (

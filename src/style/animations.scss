@@ -5,8 +5,8 @@
     overflow: hidden;
     transition: 0.5s linear all;
   }
-
-  &.list-leave-active.list-leave-to {
+  &.list-leave-to,
+  &.list-enter-from {
     height: 0;
     margin-bottom: 0;
     opacity: 0;
@@ -14,11 +14,61 @@
     padding-top: 0;
   }
 
-  &.list-leave-active.list-leave-from {
+  &.list-leave-from {
     height: 120px;
     margin-bottom: 20px;
     opacity: 1;
     padding-bottom: 4px;
     padding-top: 15px;
+  }
+}
+
+.fade-enter-active {
+  animation: 1s fade-in;
+  z-index: 100;
+}
+.fade-leave-active {
+  animation: 1s fade-out;
+}
+
+// .fade-enter-from,
+// .fade-leave-to {
+//   opacity: 0;
+// }
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.detail-container {
+  min-height: 300px;
+  &.loading {
+    margin: 100px auto;
+    text-align: center;
+    width: 100px;
+  }
+
+  .phone-images img {
+    position: absolute;
+    display: block;
+    left: 0;
+    top: -500px;
+    &.selected {
+      top: 500px;
+    }
   }
 }

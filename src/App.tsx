@@ -3,7 +3,7 @@ import { RouterView } from 'vue-router'
 
 const App = () => (
   <div class="view-frame">
-    <Transition name="view-fade">
+    <Transition name="fade">
       <RouterView></RouterView>
     </Transition>
   </div>
