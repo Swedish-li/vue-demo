@@ -1,87 +1,24 @@
-/* Animate `ngRepeat` in `phoneList` component */
+.phone-list-item {
+  &.list-enter-active,
+  &.list-leave-active,
+  &.list-move {
+    overflow: hidden;
+    transition: 0.5s linear all;
+  }
 
-// .phone-list-item {
-//   &.list-enter-active,
-//   &.list-leave-active {
-//     overflow: hidden;
-//     transition: 0.5s linear all;
-//   }
+  &.list-leave-active.list-leave-to {
+    height: 0;
+    margin-bottom: 0;
+    opacity: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
 
-//   &.list-enter-active,
-//   &.list-leave-active,
-//   &.list-enter-from
-//   // &.list-leave-to
-//   {
-//     height: 0;
-//     margin-bottom: 0;
-//     opacity: 0;
-//     padding-bottom: 0;
-//     padding-top: 0;
-//   }
-
-//   &.list-enter-active,
-//   &.list-leave-active,
-//   &.list-enter-from
-//   // &.list-leave-to
-//   {
-//     height: 120px;
-//     margin-bottom: 20px;
-//     opacity: 1;
-//     padding-bottom: 4px;
-//     padding-top: 15px;
-//   }
-// }
-// .list-enter-active,
-// .list-leave-active,
-.list-move {
-  transition: transform 0.8s ease;
+  &.list-leave-active.list-leave-from {
+    height: 120px;
+    margin-bottom: 20px;
+    opacity: 1;
+    padding-bottom: 4px;
+    padding-top: 15px;
+  }
 }
-
-/* Animate view transitions with `ngView` */
-// .view-container {
-//   position: relative;
-// }
-
-// .view-frame {
-//   margin-top: 20px;
-// }
-
-// .view-fade-enter-active,
-// .view-fade-leave.active {
-//   background: white;
-//   left: 0;
-//   position: absolute;
-//   right: 0;
-//   top: 0;
-// }
-
-// .view-fade-enter-active {
-//   animation: 1s fade-in;
-//   z-index: 100;
-// }
-
-// .view-fade-leave-active {
-//   animation: 1s fade-out;
-//   z-index: 99;
-// }
-
-// @keyframes fade-in {
-//   from {
-//     opacity: 0;
-//   }
-//   to {
-//     opacity: 1;
-//   }
-// }
-
-// @keyframes fade-out {
-//   from {
-//     opacity: 1;
-//   }
-//   to {
-//     opacity: 0;
-//   }
-// }
-
-
-/* Older browsers might need vendor-prefixes for keyframes and animation! */
