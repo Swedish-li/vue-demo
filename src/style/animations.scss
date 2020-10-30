@@ -23,12 +23,13 @@
   }
 }
 
-.fade-enter-active {
+.fade-enter-to {
   animation: 1s fade-in;
   z-index: 100;
 }
-.fade-leave-active {
+.fade-leave-from {
   animation: 1s fade-out;
+  z-index: 99;
 }
 
 // .fade-enter-from,
