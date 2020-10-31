@@ -8,7 +8,7 @@
 - [ ] more components
 - [ ] performace optimization
 - [ ] unit test
-- [ ] e2e test
+- [x] e2e test
 - [x] gh page deploy (workflow)
 
 ## Links

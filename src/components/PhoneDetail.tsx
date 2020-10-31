@@ -36,6 +36,7 @@ const ImageView = defineComponent({
     return (
       <img
         ref="el"
+        class={{ selected: this.selected }}
         {...$attrs}
         src={this.src}
         onClick={(e) => {

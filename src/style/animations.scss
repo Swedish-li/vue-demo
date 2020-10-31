@@ -23,19 +23,32 @@
   }
 }
 
-.fade-enter-to {
+.fade-enter-active {
   animation: 1s fade-in;
   z-index: 100;
 }
-.fade-leave-from {
+.fade-leave-active {
   animation: 1s fade-out;
   z-index: 99;
 }
 
-// .fade-enter-from,
-// .fade-leave-to {
-//   opacity: 0;
-// }
+.view-frame {
+  position: relative;
+}
+
+.view-frame .fade-enter-active,
+.view-frame .fade-leave-active {
+  background: white;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 
 @keyframes fade-in {
   from {

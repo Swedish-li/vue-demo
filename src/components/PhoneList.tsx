@@ -1,7 +1,13 @@
-import { getUrl } from '../utils'
+import { getUrl, deepCompare } from '../utils'
 import { defineComponent, TransitionGroup } from 'vue'
 import { RouterLink } from 'vue-router'
 import { getPhoneList, Phone } from '../core'
+
+const createPredicateFn = (query: string) => {
+  return function (item: unknown) {
+    return deepCompare(item, query)
+  }
+}
 
 type Order = 'age' | 'name'
 
@@ -39,11 +45,16 @@ export const PhoneListComponent = defineComponent({
             {/* <!--Sidebar content--> */}
             <p>
               Search:
-              <input value={this.query} onInput={(e) => this.onInputQuery(e)} />
+              <input
+                name="query"
+                value={this.query}
+                onInput={(e) => this.onInputQuery(e)}
+              />
             </p>
             <p>
               Sort by:
               <select
+                name="order"
                 value={this.orderProp}
                 onChange={(e) => this.onChangeOrder(e)}
               >
@@ -57,32 +68,31 @@ export const PhoneListComponent = defineComponent({
 
             <ul class="phones">
               <TransitionGroup name="list">
-                {this.phones
-                  .filter((p) => {
-                    return (
-                      p.name.indexOf(this.query) >= 0 ||
-                      p.snippet.indexOf(this.query) >= 0
-                    )
-                  })
-                  .sort((a, b) => {
-                    const valueA = a[this.orderProp]
-                    const valueB = b[this.orderProp]
+                {() =>
+                  this.phones
+                    .filter(createPredicateFn(this.query))
+                    .sort((a, b) => {
+                      const valueA = a[this.orderProp]
+                      const valueB = b[this.orderProp]
 
-                    if (typeof valueA === 'string') {
-                      return valueA.localeCompare(valueB as string)
-                    }
+                      if (typeof valueA === 'string') {
+                        return valueA.localeCompare(valueB as string)
+                      }
 
-                    return valueA > valueB ? 1 : valueA === valueB ? 0 : -1
-                  })
-                  .map((p) => (
-                    <li class="thumbnail phone-list-item" key={p.id}>
-                      <RouterLink to={`/phones/${p.id}`} class="thumb">
-                        <img src={getUrl(p.imageUrl)} alt={p.name} />
-                      </RouterLink>
-                      <RouterLink to={`/phones/${p.id}`}>{p.name}</RouterLink>
-                      <p>{p.snippet}</p>
-                    </li>
-                  ))}
+                      return valueA > valueB ? 1 : valueA === valueB ? 0 : -1
+                    })
+                    .map((p) => (
+                      <li class="thumbnail phone-list-item" key={p.id}>
+                        <RouterLink to={`/phones/${p.id}`} class="thumb">
+                          {() => <img src={getUrl(p.imageUrl)} alt={p.name} />}
+                        </RouterLink>
+                        <RouterLink to={`/phones/${p.id}`}>
+                          {() => p.name}
+                        </RouterLink>
+                        <p>{p.snippet}</p>
+                      </li>
+                    ))
+                }
               </TransitionGroup>
             </ul>
           </div>
