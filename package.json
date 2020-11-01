@@ -14,12 +14,15 @@
     "e2e:open": "cypress open --config baseUrl=http://localhost:3000",
     "test:e2e:run": "cypress run --config baseUrl=http://localhost:3000",
     "e2e:run:chrome": "cypress run --browser chrome --config baseUrl=http://localhost:3000",
-    "e2e:run:firefox": "cypress run --browser firefox --config baseUrl=http://localhost:3000"
+    "e2e:run:firefox": "cypress run --browser firefox --config baseUrl=http://localhost:3000",
+    "ci-e2e-run": "node ./cypress/start.js",
+    "ci-e2e-test": "yarn build & yarn ci-e2e-run"
   },
   "devDependencies": {
     "@types/animejs": "^3.1.2",
     "@vue/compiler-sfc": "3.0.0",
     "cypress": "^5.5.0",
+    "koa-mount": "^4.0.0",
     "prettier": "^2.1.2",
     "sass": "^1.26.11",
     "typescript": "^4.0.5",

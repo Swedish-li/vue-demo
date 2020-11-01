@@ -38,7 +38,7 @@ context('PhoneCat Application', () => {
       }
       cy.get(inputSeleector)
         .type('tablet')
-        .wait(1000)
+        .wait(500)
         .get(listSelector)
         .then(($list) => {
           expect(getNames($list)).to.eql([
@@ -49,8 +49,8 @@ context('PhoneCat Application', () => {
 
       cy.get('select[name=order]')
         .select('name')
+        .wait(500)
         .get(listSelector)
-        .wait(1000)
         .then(($list) => {
           expect(getNames($list)).to.eql([
             'MOTOROLA XOOM\u2122',
@@ -62,7 +62,7 @@ context('PhoneCat Application', () => {
     it('should render phone specific links', () => {
       cy.get(inputSeleector)
         .type('nexus')
-        .wait(1000)
+        .wait(500)
         .get('.phones li a')
         .first()
         .click()
