@@ -35,7 +35,7 @@ const usePhoneListMatchingQuery = (list: Ref<Phone[]>) => {
 type Order = 'age' | 'name'
 
 const usePhoneListSort = (list: Ref<Phone[]>) => {
-  const order = ref<Order>('name')
+  const order = ref<Order>('age')
   const phoneListSorted = computed(() => {
     return list.value
       .sort((a, b) => {
@@ -73,7 +73,6 @@ const PhoneListView = defineComponent({
   },
   methods: {
     updateSortOrder(e: Event) {
-      console.log(e, 'updateSortOrder')
       if (e.target instanceof HTMLSelectElement) {
         this.order = e.target.value as Order
       }
@@ -81,11 +80,11 @@ const PhoneListView = defineComponent({
   },
   render() {
     const options = [
+      { value: 'age', text: 'Newest' },
       {
         value: 'name',
         text: 'Alphabetical',
       },
-      { value: 'age', text: 'Newest' },
     ]
     return (
       <div class="container-fluid">

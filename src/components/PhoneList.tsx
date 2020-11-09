@@ -11,13 +11,6 @@ const PhoneList = defineComponent({
       required: true,
     },
   },
-  setup(props) {
-    const { list } = toRefs(props)
-
-    return {
-      list,
-    }
-  },
   render() {
     return (
       <ul class="phones">
