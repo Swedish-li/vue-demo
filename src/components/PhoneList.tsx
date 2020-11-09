@@ -1,103 +1,42 @@
-import { getUrl, deepCompare } from '../utils'
-import { defineComponent, TransitionGroup } from 'vue'
+import { getUrl } from '../utils'
+import { defineComponent, PropType, toRefs, TransitionGroup } from 'vue'
 import { RouterLink } from 'vue-router'
-import { getPhoneList, Phone } from '../core'
+import { Phone } from '../core'
 
-const createPredicateFn = (query: string) => {
-  return function (item: unknown) {
-    return deepCompare(item, query)
-  }
-}
-
-type Order = 'age' | 'name'
-
-interface State {
-  phones: Phone[]
-  orderProp: Order
-  query: string
-}
-
-export const PhoneListComponent = defineComponent({
+const PhoneList = defineComponent({
   name: 'Phone-list',
-  data(): State {
+  props: {
+    list: {
+      type: Array as PropType<Phone[]>,
+      required: true,
+    },
+  },
+  setup(props) {
+    const { list } = toRefs(props)
+
     return {
-      phones: [],
-      orderProp: 'age',
-      query: '',
+      list,
     }
-  },
-  methods: {
-    onChangeOrder(e: Event) {
-      this.orderProp = (e.target as HTMLSelectElement).value as Order
-    },
-    onInputQuery(e: Event) {
-      this.query = (e.target as HTMLInputElement).value
-    },
-  },
-  mounted() {
-    getPhoneList().then((res) => (this.phones = res))
   },
   render() {
     return (
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-2">
-            {/* <!--Sidebar content--> */}
-            <p>
-              Search:
-              <input
-                name="query"
-                value={this.query}
-                onInput={(e) => this.onInputQuery(e)}
-              />
-            </p>
-            <p>
-              Sort by:
-              <select
-                name="order"
-                value={this.orderProp}
-                onChange={(e) => this.onChangeOrder(e)}
-              >
-                <option value="name">Alphabetical</option>
-                <option value="age">Newest</option>
-              </select>
-            </p>
-          </div>
-          <div class="col-md-10">
-            {/* <!--Body content--> */}
-
-            <ul class="phones">
-              <TransitionGroup name="list">
-                {() =>
-                  this.phones
-                    .filter(createPredicateFn(this.query))
-                    .sort((a, b) => {
-                      const valueA = a[this.orderProp]
-                      const valueB = b[this.orderProp]
-
-                      if (typeof valueA === 'string') {
-                        return valueA.localeCompare(valueB as string)
-                      }
-
-                      return valueA > valueB ? 1 : valueA === valueB ? 0 : -1
-                    })
-                    .map((p) => (
-                      <li class="thumbnail phone-list-item" key={p.id}>
-                        <RouterLink to={`/phones/${p.id}`} class="thumb">
-                          {() => <img src={getUrl(p.imageUrl)} alt={p.name} />}
-                        </RouterLink>
-                        <RouterLink to={`/phones/${p.id}`}>
-                          {() => p.name}
-                        </RouterLink>
-                        <p>{p.snippet}</p>
-                      </li>
-                    ))
-                }
-              </TransitionGroup>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <ul class="phones">
+        <TransitionGroup name="list">
+          {() =>
+            this.list.map((p) => (
+              <li class="thumbnail phone-list-item" key={p.id}>
+                <RouterLink to={`/phones/${p.id}`} class="thumb">
+                  {() => <img src={getUrl(p.imageUrl)} alt={p.name} />}
+                </RouterLink>
+                <RouterLink to={`/phones/${p.id}`}>{() => p.name}</RouterLink>
+                <p>{p.snippet}</p>
+              </li>
+            ))
+          }
+        </TransitionGroup>
+      </ul>
     )
   },
 })
+
+export { PhoneList }
