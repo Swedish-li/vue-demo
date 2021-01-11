@@ -1,6 +1,6 @@
 const cypress = require('cypress')
 const server = require('./server')
-const { base } = require('../vite.config')
+const { base } = require('../build')
 const baseUrl = `http://localhost:${server.port}${base}`
 
 return server.start().then((listeningServe) => {

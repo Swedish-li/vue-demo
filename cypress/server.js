@@ -3,7 +3,7 @@ const mount = require('koa-mount')
 const server = require('koa-static')
 const path = require('path')
 
-const baseUrl = require('../vite.config').base
+const baseUrl = require('../build').base
 const buildDir = '../dist'
 const port = 8888
 

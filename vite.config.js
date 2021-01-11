@@ -1,8 +1,10 @@
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
+const { base } = require('./build')
+
 module.exports = {
-  base: '/vue-demo/',
+  base,
   plugins: [
     vue(),
     vueJsx({
