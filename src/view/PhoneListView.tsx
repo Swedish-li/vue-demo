@@ -90,17 +90,8 @@ const PhoneListView = defineComponent({
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-2">
-            <Search
-              modelValue={this.searchQuery}
-              onChange={(v) => {
-                this.searchQuery = v
-              }}
-            />
-            <Sort
-              options={options}
-              order={this.order}
-              onChange={this.updateSortOrder}
-            />
+            <Search v-model={this.searchQuery} />
+            <Sort options={options} v-model={this.order} />
           </div>
           <div class="col-md-10">
             <PhoneList list={this.phoneListSorted} />

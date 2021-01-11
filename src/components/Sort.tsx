@@ -2,26 +2,30 @@ import { defineComponent, PropType } from 'vue'
 
 const Sort = defineComponent({
   props: {
-    order: {
+    modelValue: {
       type: String,
-      required: true,
-    },
-    onChange: {
-      type: Function as PropType<(event: Event) => void>,
-      required: true,
     },
     options: {
       type: Array as PropType<{ value: string; text: string }[]>,
       required: true,
     },
   },
-  setup(props) {
-    const { order: orderProp, onChange, options } = props
+  emits: ['update:modelValue'],
+  setup(props, { emit }) {
+    const { modelValue, options } = props
 
     return () => (
       <p>
         Sort by:
-        <select name="order" value={orderProp} onChange={(e) => onChange(e)}>
+        <select
+          name="order"
+          value={modelValue}
+          onChange={(e) => {
+            const value = (e.target as HTMLSelectElement).value
+            // props.onChange(value)
+            emit('update:modelValue', value)
+          }}
+        >
           {options.map((v) => (
             <option value={v.value}>{v.text}</option>
           ))}

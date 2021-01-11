@@ -5,15 +5,13 @@ const Search = defineComponent({
     modelValue: {
       type: String,
     },
-    onChange: {
-      type: Function as PropType<(v: string) => void>,
-      required: true,
-    },
   },
-  setup(props) {
+  emits: ['update:modelValue'],
+  setup(props, { emit }) {
     const handleInput = (e: Event) => {
       const value = (e.target as HTMLInputElement).value
-      props.onChange(value)
+      // props.onChange(value)
+      emit('update:modelValue', value)
     }
 
     return () => (
