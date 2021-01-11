@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --base=/vue-demo",
     "format": "prettier --write --parser typescript \"src/**/*.ts?(x)\"",
     "e2e:open": "cypress open --config baseUrl=http://localhost:3000",
     "test:e2e:run": "cypress run --config baseUrl=http://localhost:3000",

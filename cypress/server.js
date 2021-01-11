@@ -16,8 +16,8 @@ const start = () =>
       reject(err)
     })
 
-    app.listen(8888, (listeningServer) => {
-      console.log('server is listening on ' + 8888)
+    app.listen(port, (listeningServer) => {
+      console.log('server is listening on ' + port)
       resolve(listeningServer)
     })
   })
