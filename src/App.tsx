@@ -2,6 +2,7 @@ import {
   Transition,
   Component as DynamicComponent,
   resolveDynamicComponent,
+  KeepAlive,
 } from 'vue'
 import { RouterView } from 'vue-router'
 
@@ -10,7 +11,10 @@ const App = () => (
     <RouterView>
       {({ Component }: { Component: DynamicComponent }) => (
         <Transition name="fade">
-          {() => resolveDynamicComponent(Component)}
+          {/* https://github.com/vuejs/jsx-next/issues/286 */}
+          {/* <KeepAlive> */}
+            {() => resolveDynamicComponent(Component)}
+          {/* </KeepAlive> */}
         </Transition>
       )}
     </RouterView>
