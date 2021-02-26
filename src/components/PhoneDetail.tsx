@@ -14,6 +14,7 @@ const ImageView = defineComponent({
   },
   watch: {
     selected(newValue: boolean, oldValue: boolean) {
+      console.log(newValue, oldValue, 'selected imageView')
       if (!this.$refs.el || newValue === oldValue) return
 
       const el = this.$refs.el as HTMLPictureElement
@@ -32,6 +33,7 @@ const ImageView = defineComponent({
     },
   },
   render() {
+    console.log(this.selected, 'render image view!')
     const { $attrs } = this
     return (
       <img
@@ -67,11 +69,17 @@ export const PhoneDetailComponent = defineComponent({
     }
   },
   mounted() {
-    this.mainImageUrl = this.detail.images[0]
+    this.initMainImage()
+  },
+  updated() {
+    this.initMainImage()
   },
   methods: {
     setImage(img: string) {
       this.mainImageUrl = img
+    },
+    initMainImage() {
+      this.mainImageUrl = this.detail.images[0]
     },
   },
   render() {
