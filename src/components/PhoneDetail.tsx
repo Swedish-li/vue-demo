@@ -10,11 +10,9 @@ const ImageView = defineComponent({
       required: true,
     },
     selected: Boolean,
-    onClick: Function as PropType<(event: MouseEvent) => void>,
   },
   watch: {
     selected(newValue: boolean, oldValue: boolean) {
-      console.log(newValue, oldValue, 'selected imageView')
       if (!this.$refs.el || newValue === oldValue) return
 
       const el = this.$refs.el as HTMLPictureElement
@@ -33,7 +31,6 @@ const ImageView = defineComponent({
     },
   },
   render() {
-    console.log(this.selected, 'render image view!')
     const { $attrs } = this
     return (
       <img
@@ -41,11 +38,6 @@ const ImageView = defineComponent({
         class={{ selected: this.selected }}
         {...$attrs}
         src={this.src}
-        onClick={(e) => {
-          if (this.onClick) {
-            this.onClick(e)
-          }
-        }}
       />
     )
   },
@@ -71,8 +63,10 @@ export const PhoneDetailComponent = defineComponent({
   mounted() {
     this.initMainImage()
   },
-  updated() {
-    this.initMainImage()
+  watch: {
+    detail() {
+      this.initMainImage()
+    },
   },
   methods: {
     setImage(img: string) {
@@ -98,7 +92,7 @@ export const PhoneDetailComponent = defineComponent({
         <ul class="phone-thumbs">
           {phone.images.map((img) => (
             <li>
-              <ImageView src={getUrl(img)} onClick={() => this.setImage(img)} />
+              <img src={getUrl(img)} onClick={() => this.setImage(img)} />
             </li>
           ))}
         </ul>
