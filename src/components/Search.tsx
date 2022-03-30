@@ -1,6 +1,7 @@
-import { defineComponent, PropType } from 'vue'
+import { defineComponent } from 'vue'
 
 const Search = defineComponent({
+  name: 'Search',
   props: {
     modelValue: {
       type: String,

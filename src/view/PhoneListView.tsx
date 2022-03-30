@@ -57,6 +57,14 @@ const usePhoneListSort = (list: Ref<Phone[]>) => {
   }
 }
 
+const SORT_OPTIONS = [
+  { value: 'age', text: 'Newest' },
+  {
+    value: 'name',
+    text: 'Alphabetical',
+  },
+]
+
 const PhoneListView = defineComponent({
   name: 'phone-list-view',
   setup() {
@@ -79,19 +87,19 @@ const PhoneListView = defineComponent({
     },
   },
   render() {
-    const options = [
-      { value: 'age', text: 'Newest' },
-      {
-        value: 'name',
-        text: 'Alphabetical',
-      },
-    ]
+    // const options = [
+    //   { value: 'age', text: 'Newest' },
+    //   {
+    //     value: 'name',
+    //     text: 'Alphabetical',
+    //   },
+    // ]
     return (
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-2">
             <Search v-model={this.searchQuery} />
-            <Sort options={options} v-model={this.order} />
+            <Sort options={SORT_OPTIONS} v-model={this.order} />
           </div>
           <div class="col-md-10">
             <PhoneList list={this.phoneListSorted} />

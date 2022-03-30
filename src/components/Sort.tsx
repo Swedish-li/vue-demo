@@ -1,6 +1,7 @@
 import { defineComponent, PropType } from 'vue'
 
 const Sort = defineComponent({
+  name: 'Sort',
   props: {
     modelValue: {
       type: String,
@@ -19,15 +20,15 @@ const Sort = defineComponent({
         Sort by:
         <select
           name="order"
-          value={modelValue}
           onChange={(e) => {
             const value = (e.target as HTMLSelectElement).value
-            // props.onChange(value)
             emit('update:modelValue', value)
           }}
         >
           {options.map((v) => (
-            <option value={v.value}>{v.text}</option>
+            <option value={v.value} selected={v.value === modelValue}>
+              {v.text}
+            </option>
           ))}
         </select>
       </p>
