@@ -1,6 +1,6 @@
 // https://www.typescriptlang.org/docs/handbook/advanced-types.html#conditional-types
 
-import { getUrl } from '../../utils'
+import { getUrl } from '@/utils'
 
 export function getPhone(id: string) {
   return fetchJson<PhoneDetail>(getUrl(`phones/${id}.json`))

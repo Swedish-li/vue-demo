@@ -1,5 +1,5 @@
-import { PhoneDetailComponent } from '../components/PhoneDetail'
-import { getPhone, PhoneDetail } from '../core'
+import { PhoneDetailComponent } from '@/components/PhoneDetail'
+import { getPhone, PhoneDetail } from '@/core'
 import { defineComponent, onMounted, Ref, ref, toRefs, watch } from 'vue'
 
 const userPhoneDetail = (id: Ref<string>) => {

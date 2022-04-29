@@ -1,8 +1,8 @@
-import { PhoneList } from '../components/PhoneList'
-import { Search } from '../components/Search'
-import { Sort } from '../components/Sort'
-import { getPhoneList, Phone } from '../core'
-import { deepCompare } from '../utils'
+import { PhoneList } from '@/components/PhoneList'
+import { Search } from '@/components/Search'
+import { Sort } from '@/components/Sort'
+import { getPhoneList, Phone } from '@/core'
+import { deepCompare } from '@/utils'
 import { computed, defineComponent, onMounted, Ref, ref } from 'vue'
 
 const usePhoneList = () => {
@@ -87,13 +87,6 @@ const PhoneListView = defineComponent({
     },
   },
   render() {
-    // const options = [
-    //   { value: 'age', text: 'Newest' },
-    //   {
-    //     value: 'name',
-    //     text: 'Alphabetical',
-    //   },
-    // ]
     return (
       <div class="container-fluid">
         <div class="row">

@@ -1,6 +1,6 @@
-import { getUrl } from '../utils'
+import { getUrl } from '@/utils'
 import { defineComponent, PropType } from 'vue'
-import { checkmark, PhoneDetail } from '../core'
+import { checkmark, PhoneDetail } from '@/core'
 import anime from 'animejs'
 
 const ImageView = defineComponent({
